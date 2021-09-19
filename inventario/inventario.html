@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-        <meta charset='utf-8'>
+    <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Inventario pizza Mia</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
 </head>
-<body> 
+
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="../src/components/navegacion/Navegacion.html">Inicio</a></li>
+            <li><a href="../src/loginyregister.html">Registro</a></li>
+            <li class="item-r"><a href="../src/loginyregister.html">Login</a></li>
+        </ul>
+    </div>
     <div class="barExter">
         <a href="../src/index_admin.html">Home</a>
         <h1> PIZZA MIA </h1>
     </div>
     <div class="center">
-        <h2> Añadir a  Inventario </h2>
+        <h2> Añadir a Inventario </h2>
         <select class="greenbtn">
             <option selected>Producto</option>
             <option value="1">One</option>
@@ -30,19 +39,19 @@
 
         <table>
             <tr>
-              <th>Producto</th>
-              <th>Cantidad (Lb)</th>
-              <th>Proveedor</th>
+                <th>Producto</th>
+                <th>Cantidad (Lb)</th>
+                <th>Proveedor</th>
             </tr>
             <tr>
-              <td>Masa para Pizza</td>
-              <td>10</td>
-              <td>Otto</td>
+                <td>Masa para Pizza</td>
+                <td>10</td>
+                <td>Otto</td>
             </tr>
             <tr>
-              <td>Tomate</td>
-              <td>20</td>
-              <td>Placita campesina</td>
+                <td>Tomate</td>
+                <td>20</td>
+                <td>Placita campesina</td>
             </tr>
             <tr>
                 <td>Queso</td>
@@ -59,7 +68,7 @@
                 <td>20</td>
                 <td>Colanta</td>
             </tr>
-          </table>
+        </table>
     </div>
     <div id="registro">
         <h2>Registro de Ingredientes</h2>
@@ -68,6 +77,41 @@
         <button class="greenbtn"> Ingresar  </button>
         <button class="cancelBtn"> Eliminar </button>
     </div>
-    
+    <footer>
+
+        <div class="container__footer">
+
+            <div class="box__footer">
+                <h2>La pizza mía</h2>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Encuesta de Satisfacción</a>
+                <a href="#">Servicios</a>
+                <a href="../src/add_pqrs.html">Quejas, reclamos y sugerencias</a>
+            </div>
+            <div class="box__footer">
+
+                <div class="terms">
+
+                    <p>Su opinión es muy importante para nosotros <br>El acceso y utilización del Sitio Web se regirá e interpretará de conformidad con la legislación colombiana. Cualquier controversia que pudiera surgir entre Pizza Mia y los usuarios del
+                        Sitio Web, será dirimida, con renuncia expresa de las Partes a su propio fuero, por los Juzgados y Tribunales de la ciudad de Bogotá.</p>
+                </div>
+                <div class="logo">
+                    <img src="log_proyectomintic.png" alt="">
+                </div>
+            </div>
+
+
+            <div class="box__footer">
+                <h2>Redes Sociales</h2>
+                <a href="#"> <img src="../src/css/icon_facebook.jpg"> Facebook</a><label> <a href="">siguenos en facebook</a> </label>
+                <a href="#"><img src="../src/css/icon_correo.jpg"> Email</a><label> <a href="">email@gmail.com</a></label>
+                <a href="#"><img src="../src/css/icon_whatsapp.jpg"> Whatsapp</a><label> 3123552888</label>
+                <a href="#"><img src="../src/css/icon_ubicacion.jpg"> Direccion</a><label>Carrera 68B 22B 71 Bogotá</label>
+            </div>
+
+        </div>
+    </footer>
 </body>
+
 </html>

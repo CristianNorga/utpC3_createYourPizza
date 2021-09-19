@@ -1,8 +1,40 @@
-body{
-    background: #6a994e;    
+body {
+    background: #6a994e;
 }
 
-.barExter{
+#menu {
+    background-color: #f2e8cf;
+}
+
+#menu ul {
+    list-style: none;
+    margin: 10px;
+    padding: 20px;
+}
+
+#menu ul li {
+    display: inline-block;
+}
+
+#menu ul li a {
+    color: black;
+    display: block;
+    padding: 30px 80px;
+    text-decoration: none;
+    font-size: 20px;
+    font: 600;
+}
+
+#menu ul li a:hover {
+    background-color: #dafc86;
+    color: black;
+}
+
+.item-r {
+    float: right;
+}
+
+.barExter {
     background: #a0c355;
     text-align: center;
     font-size: 20px;
@@ -11,7 +43,7 @@ body{
     padding: 5px;
 }
 
-.center{
+.center {
     background: white;
     text-align: center;
     margin-left: 60px;
@@ -19,23 +51,23 @@ body{
     padding-bottom: 30px;
 }
 
-.center h2{
-    font-size:30px;
+.center h2 {
+    font-size: 30px;
 }
 
-.center label{
+.center label {
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.greenbtn{
+.greenbtn {
     background: #6a994e;
     text-align: center;
     color: white;
     padding: 10px;
 }
 
-#table-zone{
+#table-zone {
     padding-bottom: 0px;
 }
 
@@ -45,27 +77,88 @@ table {
     width: 100%;
 }
 
-td, th {
+td,
+th {
     border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
 
-#registro{
-    background:#a0c355;
+#registro {
+    background: #a0c355;
     margin-left: 60px;
     margin-right: 60px;
     text-align: center;
     padding-bottom: 30px;
 }
 
-#registro label{
+#registro label {
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.cancelBtn{
+.cancelBtn {
     background: #bc4749;
     color: white;
     padding: 10px;
+}
+
+footer {
+    width: auto;
+    padding: 0%;
+    background-color: #f37775;
+    background-size: cover;
+}
+
+.container__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.box__footer {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.box__footer .logo img {
+    width: 180px;
+    align-content: center;
+}
+
+.box__footer .terms {
+    max-width: 350px;
+    margin-top: 20px;
+    font-weight: 500;
+    color: #f2c8ef;
+    font-size: 18px;
+}
+
+.box__footer h2 {
+    margin-bottom: 30px;
+    color: #f2c8ef;
+    font-weight: 700;
+}
+
+.box__footer a {
+    margin-top: 10px;
+    color: #f2c8ef;
+    font-weight: 600;
+}
+
+.box__footer a:hover {
+    opacity: 0.8;
+}
+
+.box__footer a img {
+    width: 20px;
+    height: 20px;
+}
+
+.box__footer label {
+    color: #f2c8ef;
 }
