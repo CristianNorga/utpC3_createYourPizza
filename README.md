@@ -1,20 +1,52 @@
-# Proyecto final Sprint I
+## ARMA TU PIZZA.
 
-Desarrollar un sitio web que conste de 5 secciones, cada sección deberá ser realizada por un estudiante. Los diferentes elementos del sitio web contarán con estilos personalizados creados por los estudiantes y deberán estar condensados en una sola hoja de estilos.
+![](https://github.com/CristianNorga/utpC3_createYourPizza/tree/master/src/images/log_proyectomintic.png)
 
-Para iniciar con el desarrollo del sitio web, los estudiantes deberán definir previamente aspectos como ancho del sitio (mínimo 1200px), la información a presentar en el sitio web, diseñar un mockup, borrador o bosquejo, también descargar, diseñar o crear los recursos a utilizar como imágenes, iconos, logos, entre otros y finalmente asignar responsable a cada sección.
+![](https://github.com/CristianNorga/utpC3_createYourPizza/tree/master/src/images/drive.svg) 
+![](https://github.com/CristianNorga/utpC3_createYourPizza/tree/master/src/images/trello.svg)
 
-El proyecto, deberá manejarse versionado en un repositorio remoto en github, en el que los diferentes miembros del equipo deben tener acceso, no se permite el push directo a las ramas Dev o Master.
+[TOCM]
 
-## Secciones
+[TOC]
 
-- Sección superior, cabecera o header: esta sección deberá contar con el menú de navegación a tres páginas internas del sitio web y su respectivo enlace al inicio. Debe contar con una imagen que ocupe el ancho del sitio.
-  El menú debe de estar en un tag `<nav></nav>`.
-- Sección de servicios: aquí los estudiantes deberán dividir en ancho del sitio en 3 partes y en cada parte se deberá incluir un servicio. Cada servicio debe contar con una breve descripción, un logo, ícono o imagen que lo identifique y un enlace al detalle de los servicios. El elemento donde están los servicios debe de tener un `id=”services”`
-- Sección de noticias: El estudiante encargado de la sección de noticias, deberá dividir el ancho del sitio web en 2 filas y dos columnas para presentar 4 noticias. Cada noticia debe contar con un resumen, una imagen y un enlace a leer la noticia completa.
-  El elemento donde están los servicios debe de tener un `id=”news”`
+####EQUIPO DE DESARROLLO 
+- Héctor Alfonso Barón
+- Gloria Murillo
+- Cristian David Noreña Saldarriaga
+- Fabian Martínez Cárdenas
+- Edgar Iván Martínez Peña
+- Alexander Orejuela Arboleda
 
-- Sección de equipo: El estudiante deberá dividir el ancho del sitio entre el número de participantes del equipo e incluir junto con cada uno una foto o imagen, el nombre y algún dato como la institución educativa, edad, pasatiempo, entre otros.
-  El elemento donde están los servicios debe de tener un `id=”team”`
+####CONCEPTO
 
-- Sección Footer o pie del sitio: el estudiante deberá crear el pie del sitio web en donde se incluye información de contacto, deberá estar dividido en dos partes, en una se tendrá la información del sitio web como el motivante del desarrollo y el enlace al repositorio de github, y en la otra los contacto de los miembros del equipo con sus nombres y roles. La sección debe de estar en un tag <footer></footer>
+Pizzería local quiere ofrecer aplicativo web para que a sus clientes puedan armar sus pedidos eligiendo a su gusto opciones de ingredientes en tres tamaños (personal, mediana, familiar).
+Este proyecto busca la creación de una pizzeria, donde los Clientes pueden consultar y realizar sus pedidos desde el sistema personalizando las ordenes, y solicitar que sea entregado en la fecha que ellos deseen. Asimismo, busca llevar nuevos Clientes al restaurante.
+
+####GÉNERO
+
+Comercio de Alimentos y Bebidas
+
+**E-Business:** Se define como la aplicación de las TICs (Tecnologías de la Información y las Comunicaciones), sobre la cual se apoyan las empresas en relación con las actividades de negocio según su actividad económica, ofreciendo un valor adicional al cliente a través de la aplicación de tecnologías, filosofías y de paradigmas computacionales de la nueva economía.
+
+**E-Commerce:** Se define como la aplicación de las TICs (Tecnologías de la Información y las Comunicaciones), sobre la cual se apoyan las empresas en relación al proceso específico de la compra y venta de servicios a través de medios electrónicos, haciendo uso de Internet.
+
+####PUBLICO OBJETIVO
+
+Restaurante, consumidores de pizza
+
+####ALCANCE DEL PROYECTO
+
+Conseguir y fidelizar clientes del negocio e incluso que lo recomienden. Al inicio empezar ofreciendo pocas opciones más adelante integrar nuevos ingredientes que ayude al negocio a crecer y destacarse entre la competencia.
+En este proyecto, se presenta o despliega la estructura normativa y funcional de la administración integral de un restaurante orientado a la fidelización, que favorece la calidad del servicio y categoriza el nivel y calidad de atención, la informática despliega su potencial para ofrecer los servicios denotados por la operatividad de las comunicaciones en el entorno de la web.
+La calidad y la satisfacción del cliente son factores claves para el desarrollo de este proyecto, y estos factores serán tenidos en cuenta bajo la perspectiva del servicio ofrecido por el sistema de información, así como de la calidad de los productos y cumplimiento de la entrega de éstos al Cliente.
+El sistema de información basado en el E-Business e E-Commerce para soportar el funcionamiento integral de Restaurantes virtuales, se justifica con la integración de sinergias de diferentes actores del mercado para optimizar el funcionamiento de los restaurantes apoyados en las TICs brindando un mejor servicio a los clientes.
+##### Tabla 1.
+##### MARCO TECNOLÓGICO ASPECTO DESCRIPCIÓN
+Lenguaje de Programación
+- NodeJS, VueJS
+- Base de Datos Mongo BD, Express 
+- Lenguaje de Modelado UML 2.1 
+- Servidor Web Apache
+- Diseño de interfaces 
+
+>Uno de los aspectos principales en todo desarrollo de software es la presentación que éste tendrá al usuario final. El diseño gráfico de la aplicación es importante, debido a que con este se cumplen los requerimientos no funcionales de amigabilidad y facilidad de uso de la aplicación, factores clave para lograr una satisfacción inicial del Usuario final, en cuanto a la interactividad con el sistema se refiere.
