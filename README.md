@@ -1,13 +1,10 @@
 ## ARMA TU PIZZA.
 
-![](https://github.com/CristianNorga/utpC3_createYourPizza/tree/master/src/images/log_proyectomintic.png)
+![](https://raw.githubusercontent.com/CristianNorga/utpC3_createYourPizza/master/src/images/log_proyectomintic.png)
 
-![](https://github.com/CristianNorga/utpC3_createYourPizza/tree/master/src/images/drive.svg) 
-![](https://github.com/CristianNorga/utpC3_createYourPizza/tree/master/src/images/trello.svg)
-
-[TOCM]
-
-[TOC]
+<div>
+  <a href="https://drive.google.com/drive/u/0/folders/1c1awYxqhMd4tylXQwCfHAOtwogz4quAT"><img src="https://raw.githubusercontent.com/CristianNorga/utpC3_createYourPizza/master/src/images/drive.svg" height="28"></a> <a href="https://trello.com/b/MHVkfmNo/createyourpizza"><img src="https://raw.githubusercontent.com/CristianNorga/utpC3_createYourPizza/master/src/images/trello.svg" height="28"></a>
+</div>
 
 ####EQUIPO DE DESARROLLO 
 - Héctor Alfonso Barón
