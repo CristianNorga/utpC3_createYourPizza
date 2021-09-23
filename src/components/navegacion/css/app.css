@@ -1,0 +1,48 @@
+html {
+    min-height: 100vh;
+    position: relative;
+}
+
+body{
+    padding-top: 85px;
+    /* min-height: 100vh; */
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.user-image--small{
+    width: 37px;
+    border: 3px solid #e1e2e1;
+    margin: 0 auto;
+    padding: 3px;
+}
+
+/* modificacion para bootstrap */
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0,0,0,.5);
+}
+
+.btn-list-lg{
+    padding: 0;
+}
+
+.btn-list-lg .btn{
+    width: 100%;
+    border-radius: 0;
+}
+
+.card-img-top .card-img-top--mask{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.w-10{
+    width: 10%;
+}
