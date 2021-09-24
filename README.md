@@ -6,7 +6,7 @@
   <a href="https://drive.google.com/drive/u/0/folders/1c1awYxqhMd4tylXQwCfHAOtwogz4quAT"><img src="https://raw.githubusercontent.com/CristianNorga/utpC3_createYourPizza/master/src/images/drive.svg" height="28"></a> <a href="https://trello.com/b/MHVkfmNo/createyourpizza"><img src="https://raw.githubusercontent.com/CristianNorga/utpC3_createYourPizza/master/src/images/trello.svg" height="28"></a>
 </div>
 
-####EQUIPO DE DESARROLLO 
+#### EQUIPO DE DESARROLLO 
 - Héctor Alfonso Barón
 - Gloria Murillo
 - Cristian David Noreña Saldarriaga
@@ -14,12 +14,12 @@
 - Edgar Iván Martínez Peña
 - Alexander Orejuela Arboleda
 
-####CONCEPTO
+#### CONCEPTO
 
 Pizzería local quiere ofrecer aplicativo web para que a sus clientes puedan armar sus pedidos eligiendo a su gusto opciones de ingredientes en tres tamaños (personal, mediana, familiar).
 Este proyecto busca la creación de una pizzeria, donde los Clientes pueden consultar y realizar sus pedidos desde el sistema personalizando las ordenes, y solicitar que sea entregado en la fecha que ellos deseen. Asimismo, busca llevar nuevos Clientes al restaurante.
 
-####GÉNERO
+#### GÉNERO
 
 Comercio de Alimentos y Bebidas
 
@@ -27,11 +27,11 @@ Comercio de Alimentos y Bebidas
 
 **E-Commerce:** Se define como la aplicación de las TICs (Tecnologías de la Información y las Comunicaciones), sobre la cual se apoyan las empresas en relación al proceso específico de la compra y venta de servicios a través de medios electrónicos, haciendo uso de Internet.
 
-####PUBLICO OBJETIVO
+#### PUBLICO OBJETIVO
 
 Restaurante, consumidores de pizza
 
-####ALCANCE DEL PROYECTO
+#### ALCANCE DEL PROYECTO
 
 Conseguir y fidelizar clientes del negocio e incluso que lo recomienden. Al inicio empezar ofreciendo pocas opciones más adelante integrar nuevos ingredientes que ayude al negocio a crecer y destacarse entre la competencia.
 En este proyecto, se presenta o despliega la estructura normativa y funcional de la administración integral de un restaurante orientado a la fidelización, que favorece la calidad del servicio y categoriza el nivel y calidad de atención, la informática despliega su potencial para ofrecer los servicios denotados por la operatividad de las comunicaciones en el entorno de la web.
