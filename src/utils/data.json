@@ -1,0 +1,77 @@
+{
+  "ingredients": {
+    "sizes":[
+      {
+        "id": 1,
+        "size": "small",
+        "portion": 1,
+        "price": 2000,
+        "img": "",
+        "scale": 1,
+        "description":""
+      },
+      {
+        "id": 2,
+        "size": "medium",
+        "portion": 1,
+        "price": 3500,
+        "img": "",
+        "scale": 2,
+        "description":""
+      },
+      {
+        "id": 3,
+        "size": "large",
+        "portion": 1,
+        "price": 6000,
+        "img": "",
+        "scale": 3,
+        "description":""
+      },
+      {
+        "id": 4,
+        "size": "extra-large",
+        "portion": 1,
+        "price": 8000,
+        "img": "",
+        "scale": 4,
+        "description":""
+      }
+    ],
+    "sauces": [  
+      {
+        "id": 1,
+        "name": "tomato",
+        "price": 2000,
+        "img": "",
+        "description":""
+      }
+    ],
+    "condiments": [  
+      {
+        "id": 1,
+        "name": "cheese",
+        "price": 1200,
+        "img": "",
+        "representation": "",
+        "description":"Rico queso Parmesano hecho en las montañas europeas."
+      },
+      {
+        "id": 2,
+        "name": "pineapple",
+        "price": 1300,
+        "img": "",
+        "representation": "",
+        "description":"Descripción llamativa"
+      },
+      {
+        "id": 3,
+        "name": "jamon",
+        "price": 800,
+        "img": "",
+        "representation": "",
+        "description":"Descripción llamativa"
+      }
+    ]
+  }
+}
