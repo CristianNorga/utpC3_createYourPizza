@@ -21,11 +21,6 @@ export default {
   name: "ContentBody",
   data() {
     return {
-      pedido: {
-        cantidad: 0,
-        valorTotal: 0,
-        items: [],
-      },
       ingredientes: {
         sizes: [
           {
@@ -68,6 +63,7 @@ export default {
         sauces: [
           {
             id: 1,
+            quanty: 1000,
             name: "tomato",
             price: 2000,
             img: require("../../assets/ingredients/sauces/salsa-de-tomate.svg"),
@@ -77,7 +73,8 @@ export default {
         condiments: [
           {
             id: 1,
-            name: "cheese",
+            quanty: 1000,
+            name: "Queso",
             price: 1200,
             img: require("../../assets/ingredients/condiments/queso.svg"),
             representation: "",
@@ -85,7 +82,8 @@ export default {
           },
           {
             id: 2,
-            name: "pineapple",
+            quanty: 1000,
+            name: "Piña",
             price: 1300,
             img: require("../../assets/ingredients/condiments/pina.svg"),
             representation: "",
@@ -93,7 +91,8 @@ export default {
           },
           {
             id: 3,
-            name: "jamon",
+            quanty: 1000,
+            name: "Jamon",
             price: 800,
             img: require("../../assets/ingredients/condiments/jamon.svg"),
             representation: "",
