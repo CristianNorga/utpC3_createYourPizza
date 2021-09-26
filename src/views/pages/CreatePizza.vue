@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper pb-3">
     <content-header v-bind:pedido="pedido" />
-    <ContentCreateYourPizza />
+    <ContentCreateYourPizza v-bind:pizzaSelect="pedido.pizzas[0]" />
   </div>
 </template>
 
@@ -16,13 +16,14 @@ export default {
       pedido: {
         quanty: 1,
         confirmed: 0,
-        scale: 4,
         totalValue: 0,
         pizzas: [
           {
             id: 1,
+            scale: 4,
             select: true,
             confirm: false,
+            totalItems: 5000,
             items: [
               {
                 id: 1,

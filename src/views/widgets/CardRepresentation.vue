@@ -1,7 +1,7 @@
 <template>
   <div class="card row d-flex mx-0">
     <div class="card-title position-absolute">
-      <h3 class="position-relative cardPizza_id">#1</h3>
+      <h3 class="position-relative cardPizza_id">#{{ pizzaSelect.id }}</h3>
     </div>
     <div
       class="
@@ -17,9 +17,17 @@
         class="cardPizza_circle--l border rounded-circle position-absolute"
       ></div>
     </div>
-
+    <!-- pizzaSelect.scale -->
     <div class="text-lg-center px-md-2">
-      <h5>Pizza Mediana 4 porciones</h5>
+      <h5>
+        Pizza
+        <span v-if="pizzaSelect.scale == 1">Small 1 porcion</span>
+        <span v-else-if="pizzaSelect.scale == 2">Medium 4 porciones</span>
+        <span v-else-if="pizzaSelect.scale == 3">Large 6 porciones</span>
+        <span v-else>Extra Large 8 porciones</span>
+
+        <!-- {{ ingredientes.sizes  }} -->
+      </h5>
     </div>
 
     <div class="pizza-sumamry px-2 my-1">
@@ -35,36 +43,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Tomate</td>
-              <td scope="row" class="text-end">5.000</td>
-              <td class="text-end">
-                <button
-                  type="button"
-                  class="
-                    pizza-summary_button--add
-                    btn btn-sm btn-outline-success
-                    rounded-circle
-                  "
-                ></button>
-
-                <button
-                  type="button"
-                  class="
-                    pizza-summary_button--remove
-                    btn btn-sm btn-outline-danger
-                    rounded-circle
-                  "
-                ></button>
+            <tr v-for="item in pizzaSelect.items" v-bind:key="item.id">
+              <th scope="row">{{ item.quanty }}</th>
+              <td>{{ ingredientes[item.category][item.idItem].name }}</td>
+              <td scope="row" class="text-end">
+                {{ ingredientes[item.category][item.idItem].price }}
               </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Queso</td>
-              <td scope="row" class="text-end">5.000</td>
               <td class="text-end">
                 <button
+                  v-bind:class="item.quanty >= 2 ? 'disabled' : ''"
+                  v-bind:disabled="item.quanty >= 2"
                   type="button"
                   class="
                     pizza-summary_button--add
@@ -80,13 +68,17 @@
                     btn btn-sm btn-outline-danger
                     rounded-circle
                   "
+                  v-bind:class="item.quanty <= 0 ? 'disabled' : ''"
+                  v-bind:disabled="item.quanty <= 0"
                 ></button>
               </td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td scope="row" class="text-end" colspan="3">10.000</td>
+              <td scope="row" class="text-end" colspan="3">
+                {{ pizzaSelect.totalItems }}
+              </td>
               <td scope="row" colspan="1"></td>
             </tr>
           </tfoot>
@@ -99,6 +91,28 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "CardRepresentation",
+  props: ["pizzaSelect", "ingredientes"],
+  data() {
+    return {
+      name: "",
+      price: "",
+    };
+  },
+  mounted() {
+    // let category = this.pizzaSelect.items[0].category
+    // let id = this.pizzaSelect.items[0].idItem;
+    // let test = this.ingredientes.;
+    // console.log(test);
+  },
+  methods() {
+    // getItem(){}
+  },
+};
+</script>
 
 <style scoped>
 .cardPizza_circle--xl {

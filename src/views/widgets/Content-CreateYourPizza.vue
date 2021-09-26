@@ -3,7 +3,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 col-lg-4 mb-2">
-          <CardRepresentation />
+          <CardRepresentation
+            v-bind:pizzaSelect="pizzaSelect"
+            v-bind:ingredientes="ingredientes"
+          />
         </div>
         <div class="col-md-12 col-lg-8">
           <CardIngredients v-bind:ingredientes="ingredientes" />
@@ -19,11 +22,12 @@ import CardRepresentation from "./CardRepresentation.vue";
 
 export default {
   name: "ContentBody",
+  props: ["pizzaSelect"],
   data() {
     return {
       ingredientes: {
-        sizes: [
-          {
+        sizes: {
+          1: {
             id: 1,
             size: "small",
             portion: 1,
@@ -32,7 +36,7 @@ export default {
             scale: 1,
             description: "",
           },
-          {
+          2: {
             id: 2,
             size: "medium",
             portion: 1,
@@ -41,7 +45,7 @@ export default {
             scale: 2,
             description: "",
           },
-          {
+          3: {
             id: 3,
             size: "large",
             portion: 1,
@@ -50,7 +54,7 @@ export default {
             scale: 3,
             description: "",
           },
-          {
+          4: {
             id: 4,
             size: "extra-large",
             portion: 1,
@@ -59,9 +63,9 @@ export default {
             scale: 4,
             description: "",
           },
-        ],
-        sauces: [
-          {
+        },
+        sauces: {
+          1: {
             id: 1,
             quanty: 1000,
             name: "tomato",
@@ -69,18 +73,18 @@ export default {
             img: require("../../assets/ingredients/sauces/salsa-de-tomate.svg"),
             description: "Descripción llamativa",
           },
-        ],
-        condiments: [
-          {
+        },
+        condiments: {
+          1: {
             id: 1,
             quanty: 1000,
-            name: "Queso",
+            name: "cheese",
             price: 1200,
             img: require("../../assets/ingredients/condiments/queso.svg"),
             representation: "",
             description: "Rico queso Parmesano hecho en las montañas europeas.",
           },
-          {
+          2: {
             id: 2,
             quanty: 1000,
             name: "Piña",
@@ -89,7 +93,7 @@ export default {
             representation: "",
             description: "Descripción llamativa",
           },
-          {
+          3: {
             id: 3,
             quanty: 1000,
             name: "Jamon",
@@ -98,7 +102,7 @@ export default {
             representation: "",
             description: "Descripción llamativa",
           },
-        ],
+        },
       },
     };
   },
