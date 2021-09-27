@@ -94,23 +94,7 @@
 
 <script>
 export default {
-  name: "CardRepresentation",
   props: ["pizzaSelect", "ingredientes"],
-  data() {
-    return {
-      name: "",
-      price: "",
-    };
-  },
-  mounted() {
-    // let category = this.pizzaSelect.items[0].category
-    // let id = this.pizzaSelect.items[0].idItem;
-    // let test = this.ingredientes.;
-    // console.log(test);
-  },
-  methods() {
-    // getItem(){}
-  },
 };
 </script>
 
