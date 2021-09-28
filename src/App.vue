@@ -1,6 +1,6 @@
 <template>
 <v-app>
-  <body class="card-image"
+  <body class="card-image" 
       :style="{ backgroundImage: 'url(' + require('@/assets/pizza1.jpg') + ')' }">
     <div>
         <h1>¡Bienvenidos a la pizza mía!</h1>
@@ -23,16 +23,16 @@
                 <div class="cont__l-r">
                     <form action="" class="form__login">
                         <h2>Iniciar Sesión</h2>
-                        <input type="text" placeholder="Correo Electronico">
-                        <input type="password" placeholder="Contraseña">
+                        <input type="text" placeholder="Correo Electronico" required>
+                        <input type="password" placeholder="Contraseña" required>
                         <button type="submit">Entrar</button>
                     </form>
                     <form action="" class="form__register">
                         <h2>Regístrarse</h2>
-                        <input type="text" placeholder="Nombre completo">
-                        <input type="text" placeholder="Correo Electronico">
-                        <input type="text" placeholder="Usuario">
-                        <input type="password" placeholder="Contraseña">
+                        <input type="text" placeholder="Nombre completo" required>
+                        <input type="text" placeholder="Correo Electronico" required>
+                        <input type="text" placeholder="Usuario" required>
+                        <input type="password" placeholder="Contraseña" required>
                         <button type="submit">Regístrarse</button>
                     </form>
                 </div>
@@ -54,9 +54,13 @@
 }
 
 body {
-    background-size: cover;
+    width: 100%;
+    padding: 100%;
+    margin: 0;
+    padding: 0;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     background-attachment: fixed;
 }
 
