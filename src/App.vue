@@ -1,6 +1,7 @@
 <template>
 <v-app>
-  <body src="./src/assets/pizza1.jpg">
+  <body class="card-image"
+      :style="{ backgroundImage: 'url(' + require('@/assets/pizza1.jpg') + ')' }">
     <div>
         <h1>¡Bienvenidos a la pizza mía!</h1>
 
@@ -66,6 +67,7 @@ h1 {
     text-align: center;
     width: 300;
     height: 200;
+    text-shadow: 0.1em 0.1em #333;
 }
 
 main {
