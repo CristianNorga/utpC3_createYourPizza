@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb");
 const user = "admin";
 const password = "SgYvjK3YsPAP8xlW";
 const dataBase = "sample_analytics.customers";
-;
+
 const uri = `mongodb+srv://${user}:<${password}>@cluster.ctsee.mongodb.net/${dataBase}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
