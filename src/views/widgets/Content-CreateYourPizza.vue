@@ -19,6 +19,7 @@
 <script>
 import CardIngredients from "./CardIngredients.vue";
 import CardRepresentation from "./CardRepresentation.vue";
+import runRequest from "../../model/runRequest";
 
 export default {
   name: "ContentBody",
@@ -109,6 +110,17 @@ export default {
   components: {
     CardIngredients,
     CardRepresentation,
+  },
+  created() {
+    const data = async () => {
+      try {
+        let data = await runRequest.collection.inventory();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    data();
   },
 };
 </script>

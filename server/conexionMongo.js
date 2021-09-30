@@ -1,15 +1,14 @@
 const { MongoClient } = require("mongodb");
-const user = "admin";
-const password = "SgYvjK3YsPAP8xlW";
-const dataBase = "sample_analytics.customers";
+const { user, password, cluster, dataBase } = require("./const");
 
-const uri = `mongodb+srv://${user}:<${password}>@cluster.ctsee.mongodb.net/${dataBase}?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-client.connect((err) => {
-  // const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+const clientCreateDB = () => {
+  const uri = `mongodb+srv://${user}:${password}@${cluster}.ctsee.mongodb.net/${dataBase}?retryWrites=true&w=majority`;
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  return client;
+};
+
+export default { clientCreateDB };
