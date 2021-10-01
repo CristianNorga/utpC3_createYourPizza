@@ -1,9 +1,10 @@
 <template>
   <div id="app">
+    <div class="loader" v-bind:class="{ show: this.loader }">
+      <img src="./assets/loaderPuff.svg" />
+    </div>
     <Nav />
-    <CreatePizza />
-    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-    <!-- <HelloWorld msg="LOLA FABIOLA to Your Vue.js App" /> -->
+    <CreatePizza v-on:data="changeStatusLoader" />
     <Footer />
   </div>
 </template>
@@ -20,11 +21,42 @@ export default {
     Nav,
     Footer,
   },
+  data() {
+    return {
+      loader: true,
+    };
+  },
+  methods: {
+    changeStatusLoader: function (state) {
+      state;
+      this.loader = state;
+    },
+  },
 };
 </script>
 
 <style>
 #App {
   min-height: 100vh;
+}
+.loader {
+  visibility: hidden;
+  background: #f4f6f9;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.show {
+  visibility: visible;
+}
+
+.loader > img {
+  color: black;
+  max-width: 120px;
 }
 </style>

@@ -108,6 +108,10 @@
 </template>
 
 <style scoped>
+footer {
+  position: absolute;
+  min-width: 100vw;
+}
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.5);
 }

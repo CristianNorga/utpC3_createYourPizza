@@ -1,7 +1,10 @@
 <template>
   <div class="page-wrapper pb-3">
     <content-header v-bind:pedido="pedido" />
-    <ContentCreateYourPizza v-bind:pizzaSelect="pedido.pizzas[0]" />
+    <ContentCreateYourPizza
+      v-on:dataDos="updateStateContent"
+      v-bind:pizzaSelect="pedido.pizzas[0]"
+    />
   </div>
 </template>
 
@@ -28,20 +31,31 @@ export default {
               {
                 id: 1,
                 category: "condiments",
-                idItem: 1,
+                idItem: "uid1",
                 quanty: 1,
               },
               {
                 id: 2,
                 category: "condiments",
-                idItem: 2,
+                idItem: "uid2",
                 quanty: 2,
               },
             ],
           },
         ],
       },
+      dataCreateYourPizza: false,
+      dataCheck: true,
     };
+  },
+  methods: {
+    updateStateContent: function (state) {
+      this.dataCreateYourPizza = state;
+      this.$emit(
+        "data",
+        this.dataCheck & this.dataCreateYourPizza ? true : false
+      );
+    },
   },
   components: {
     ContentHeader,

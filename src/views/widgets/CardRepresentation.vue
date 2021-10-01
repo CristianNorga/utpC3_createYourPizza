@@ -42,7 +42,7 @@
               <th class="text-end" scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-if="ingredientes.sizes.lenght >= 1">
             <tr v-for="item in pizzaSelect.items" v-bind:key="item.id">
               <th scope="row">{{ item.quanty }}</th>
               <td>{{ ingredientes[item.category][item.idItem].name }}</td>

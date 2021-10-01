@@ -1,10 +1,22 @@
 import { callApi } from "../callApi";
 
 const inventory = {
-  list(BASE_URL) {
-    let endpoint = "productos";
+  async listAll(BASE_URL) {
+    // get
+    let endpoint = "ingredients";
     let url = BASE_URL + endpoint;
-    return callApi(url);
+    let response = await callApi(url);
+    // manage
+    let ingredients = {
+      sizes: {},
+      sauces: {},
+      condiments: {},
+    };
+    ingredients.sizes = Object.assign(response.data.sizes);
+    ingredients.sauces = Object.assign(response.data.sauces);
+    ingredients.condiments = Object.assign(response.data.condiments);
+
+    return ingredients;
   },
   create() {
     // throw new Error('500: Server error');

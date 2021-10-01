@@ -27,84 +27,11 @@ export default {
   data() {
     return {
       ingredientes: {
-        sizes: {
-          1: {
-            id: 1,
-            size: "small",
-            portion: 1,
-            price: 2000,
-            img: require("../../assets/ingredients/size/sizeS.svg"),
-            scale: 1,
-            description: "",
-          },
-          2: {
-            id: 2,
-            size: "medium",
-            portion: 1,
-            price: 3500,
-            img: require("../../assets/ingredients/size/sizeM.svg"),
-            scale: 2,
-            description: "",
-          },
-          3: {
-            id: 3,
-            size: "large",
-            portion: 1,
-            price: 6000,
-            img: require("../../assets/ingredients/size/sizeL.svg"),
-            scale: 3,
-            description: "",
-          },
-          4: {
-            id: 4,
-            size: "extra-large",
-            portion: 1,
-            price: 8000,
-            img: require("../../assets/ingredients/size/sizeXl.svg"),
-            scale: 4,
-            description: "",
-          },
-        },
-        sauces: {
-          1: {
-            id: 1,
-            quanty: 1000,
-            name: "tomato",
-            price: 2000,
-            img: require("../../assets/ingredients/sauces/salsa-de-tomate.svg"),
-            description: "Descripción llamativa",
-          },
-        },
-        condiments: {
-          1: {
-            id: 1,
-            quanty: 1000,
-            name: "cheese",
-            price: 1200,
-            img: require("../../assets/ingredients/condiments/queso.svg"),
-            representation: "",
-            description: "Rico queso Parmesano hecho en las montañas europeas.",
-          },
-          2: {
-            id: 2,
-            quanty: 1000,
-            name: "Piña",
-            price: 1300,
-            img: require("../../assets/ingredients/condiments/pina.svg"),
-            representation: "",
-            description: "Descripción llamativa",
-          },
-          3: {
-            id: 3,
-            quanty: 1000,
-            name: "Jamon",
-            price: 800,
-            img: require("../../assets/ingredients/condiments/jamon.svg"),
-            representation: "",
-            description: "Descripción llamativa",
-          },
-        },
+        sizes: {},
+        sauces: {},
+        condiments: {},
       },
+      data: false,
     };
   },
   components: {
@@ -116,6 +43,8 @@ export default {
       try {
         let data = await runRequest.collection.inventory();
         console.log(data);
+        this.ingredientes = data;
+        this.$emit("dataDos", data.lenght > 0 ? true : false);
       } catch (error) {
         console.log(error);
       }

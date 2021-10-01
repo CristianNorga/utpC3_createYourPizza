@@ -8,7 +8,7 @@ let { dataInventory } = require("./collections/inventory"); //all
 const runRequest = {
   collection: {
     inventory() {
-      let option = dataInventory.list(BASE_URL);
+      let option = dataInventory.listAll(BASE_URL);
       return option;
     },
   },

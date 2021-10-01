@@ -76,6 +76,7 @@
           </button>
         </template>
         <div class="row">
+          <!-- <div class="row" v-if="ingredientes.condiments.length >= 1"> -->
           <div
             class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-2"
             v-for="p in ingredientes.condiments"
@@ -114,6 +115,9 @@ export default {
     BTab,
   },
   directives: { "b-tabs": BTabs, "b-tab": BTab },
+  // created() {
+  //   console.log(super.ingredientes.condiments.length);
+  // },
 };
 
 var triggerTabList = [].slice.call(document.querySelectorAll("#myTab button"));

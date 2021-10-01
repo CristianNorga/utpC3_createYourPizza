@@ -5,15 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "serverdb": "nodemon ./server/server.js"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.5",
-    "express": "^4.17.1",
     "method-override": "^3.0.0",
-    "mongoose": "^6.0.8",
     "uuid": "^8.3.2",
     "vue": "^2.6.11"
   },
@@ -25,12 +22,10 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.5.3",
-    "cors": "^2.8.5",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "mutationobserver-shim": "^0.3.3",
-    "nodemon": "^2.0.13",
     "popper.js": "^1.16.0",
     "portal-vue": "^2.1.6",
     "prettier": "^2.2.1",
