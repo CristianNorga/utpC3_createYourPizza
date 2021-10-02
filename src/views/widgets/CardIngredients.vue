@@ -17,7 +17,7 @@
             </div>
           </button>
         </template>
-        <div class="row">
+        <div class="row" v-if="Object.keys(ingredientes.sizes).length >= 1">
           <div
             class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-2"
             v-for="s in ingredientes.sizes"
@@ -27,17 +27,21 @@
               v-bind:name="s.size"
               v-bind:price="s.price"
               v-bind:img="s.img"
+              v-bind:max="1"
               v-bind:description="s.portion + ' porcion(es)'"
+              v-on:itemSelect="ChangeSelectedSonSize"
+              v-bind:broSelected="selectedSon"
             />
           </div>
         </div>
       </b-tab>
-      <b-tab title="sauces">
+      <b-tab title="sauces" v-bind:disabled="step == 1">
         <template #title>
           <button
             class="btn btn-outline-success"
             type="button"
             style="width: 100%"
+            v-bind:disabled="step == 1"
           >
             <img
               class="preparation-card_img--option"
@@ -46,7 +50,7 @@
             />
           </button>
         </template>
-        <div class="row">
+        <div class="row" v-if="Object.keys(ingredientes.sauces).length >= 1">
           <div
             class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-2"
             v-for="s2 in ingredientes.sauces"
@@ -56,17 +60,20 @@
               v-bind:name="s2.name"
               v-bind:price="s2.price"
               v-bind:img="s2.img"
+              v-bind:max="1"
+              v-on:itemSelect="ChangeSelectedSonSauce"
               v-bind:description="s2.description"
             />
           </div>
         </div>
       </b-tab>
-      <b-tab title="condiments">
+      <b-tab title="condiments" v-bind:disabled="step == 1 || step == 2">
         <template #title>
           <button
             class="btn btn-outline-success"
             type="button"
             style="width: 100%"
+            v-bind:disabled="step == 1 || step == 2"
           >
             <img
               class="preparation-card_img--option"
@@ -75,8 +82,10 @@
             />
           </button>
         </template>
-        <div class="row">
-          <!-- <div class="row" v-if="ingredientes.condiments.length >= 1"> -->
+        <div
+          class="row"
+          v-if="Object.keys(ingredientes.condiments).length >= 1"
+        >
           <div
             class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-2"
             v-for="p in ingredientes.condiments"
@@ -86,6 +95,7 @@
               v-bind:name="p.name"
               v-bind:price="p.price"
               v-bind:img="p.img"
+              v-bind:max="2"
               v-bind:description="p.description"
             />
           </div>
@@ -107,7 +117,19 @@ export default {
     return {
       showPrices: false,
       value: 0,
+      selectedSon: false,
+      step: 1,
     };
+  },
+  methods: {
+    ChangeSelectedSonSauce: function (bolean) {
+      bolean === true ? (this.step = 3) : (this.step = 2);
+    },
+    ChangeSelectedSonSize: function () {
+      this.selectedSon = !this.selectedSon;
+      this.selectedSon === true ? (this.step = 2) : (this.step = 1);
+      // console.log("ChangeSelectedSon: " + this.selectedSon);
+    },
   },
   components: {
     CardItem,

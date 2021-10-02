@@ -17,24 +17,41 @@
           {{ description }}
         </div>
         <div class="text-center">$ {{ price }}</div>
-        <div class="text-center">
+        <div class="text-center" v-if="this.max > 1">
           <button
             type="button"
             class="btn btn-sm btn-outline-success rounded-circle"
+            v-bind:class="quanty >= 2 ? 'disabled' : ''"
+            v-bind:disabled="quanty >= 2"
+            v-on:click="addToQuanty"
           >
             +
           </button>
           <button
             type="button"
             class="btn btn-sm btn-outline-danger rounded-circle"
+            v-bind:class="quanty <= 0 ? 'disabled' : ''"
+            v-bind:disabled="quanty <= 0"
+            v-on:click="subtractToQuanty"
           >
             -
           </button>
-          <button
+          <!-- <button
             type="button"
             class="btn btn-sm btn-outline-info rounded-pill"
           >
             A tu gusto!
+          </button> -->
+        </div>
+        <div class="text-center" v-else>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-success"
+            v-bind:disabled="disabled"
+            v-on:click="changeSelect"
+          >
+            <span v-if="this.select == false"> Agregar </span>
+            <span v-else> Quitar </span>
           </button>
         </div>
       </div>
@@ -45,7 +62,49 @@
 <script>
 export default {
   name: "CardItem",
-  props: ["name", "price", "img", "description"],
+  props: ["name", "price", "img", "description", "max", "broSelected"],
+  data() {
+    return {
+      select: false,
+      quanty: 0,
+      disabled: false,
+    };
+  },
+  methods: {
+    addToQuanty: function () {
+      this.quanty += 1;
+    },
+    subtractToQuanty: function () {
+      this.quanty += -1;
+    },
+    changeSelect: function () {
+      this.select = !this.select;
+      // console.log(this.select);
+      this.$emit("itemSelect", this.select);
+    },
+    changeDisabled: function () {
+      if (this.broSelected) {
+        if (this.select) {
+          this.disabled = false;
+        } else {
+          this.disabled = true;
+        }
+      } else {
+        this.disabled = false;
+      }
+    },
+  },
+  watch: {
+    // cada vez que la pregunta cambie, esta función será ejecutada
+    broSelected: function () {
+      // console.log("watch");
+      // console.log("broSelected: " + this.broSelected);
+      this.changeDisabled();
+    },
+  },
+  // updated() {
+
+  // },
 };
 </script>
 

@@ -1,7 +1,9 @@
 <template>
   <div class="card row d-flex mx-0">
     <div class="card-title position-absolute">
-      <h3 class="position-relative cardPizza_id">#{{ pizzaSelect.id }}</h3>
+      <h3 class="position-relative cardPizza_id">
+        <span v-if="pizzaSelect == undefined">#{{ pizzaSelect.id }}</span>
+      </h3>
     </div>
     <div
       class="
@@ -42,7 +44,7 @@
               <th class="text-end" scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody v-if="ingredientes.sizes.lenght >= 1">
+          <tbody v-if="Object.keys(ingredientes.sizes).length >= 1">
             <tr v-for="item in pizzaSelect.items" v-bind:key="item.id">
               <th scope="row">{{ item.quanty }}</th>
               <td>{{ ingredientes[item.category][item.idItem].name }}</td>
