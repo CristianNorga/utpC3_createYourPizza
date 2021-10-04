@@ -41,7 +41,7 @@
               <th scope="col">Qty</th>
               <th scope="col">Nombre</th>
               <th class="text-end" scope="col">Valor</th>
-              <th class="text-end" scope="col">Acciones</th>
+              <!-- <th class="text-end" scope="col">Acciones</th> -->
             </tr>
           </thead>
           <tbody v-if="Object.keys(ingredientes.sizes).length >= 1">
@@ -51,7 +51,7 @@
               <td scope="row" class="text-end">
                 {{ ingredientes[item.category][item.idItem].price }}
               </td>
-              <td class="text-end">
+              <!-- <td class="text-end">
                 <button
                   v-bind:class="item.quanty >= 2 ? 'disabled' : ''"
                   v-bind:disabled="item.quanty >= 2"
@@ -73,12 +73,12 @@
                   v-bind:class="item.quanty <= 0 ? 'disabled' : ''"
                   v-bind:disabled="item.quanty <= 0"
                 ></button>
-              </td>
+              </td> -->
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td scope="row" class="text-end" colspan="3">
+              <td scope="row" class="text-end" colspan="2">
                 {{ pizzaSelect.totalItems }}
               </td>
               <td scope="row" colspan="1"></td>

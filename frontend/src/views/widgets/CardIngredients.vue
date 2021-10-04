@@ -24,6 +24,7 @@
             v-bind:key="s.id"
           >
             <CardItem
+              v-bind:idItem="s.id"
               v-bind:name="s.size"
               v-bind:price="s.price"
               v-bind:img="s.img"
@@ -57,6 +58,7 @@
             v-bind:key="s2.id"
           >
             <CardItem
+              v-bind:idItem="s2.id"
               v-bind:name="s2.name"
               v-bind:price="s2.price"
               v-bind:img="s2.img"
@@ -92,6 +94,7 @@
             v-bind:key="p.id"
           >
             <CardItem
+              v-bind:idItem="p.id"
               v-bind:name="p.name"
               v-bind:price="p.price"
               v-bind:img="p.img"
@@ -109,6 +112,7 @@
 import CardItem from "./CardItem.vue";
 import bootstrap from "bootstrap/dist/js/bootstrap.js";
 import { BTabs, BTab } from "bootstrap-vue";
+import { v1 as uuid } from "uuid";
 
 export default {
   name: "CardIngredients",
@@ -119,16 +123,48 @@ export default {
       value: 0,
       selectedSon: false,
       step: 1,
+      pizza: {
+        id: 0,
+        scale: 0,
+        select: true,
+        confirm: false,
+        totalItems: 0,
+        items: [],
+      },
     };
   },
   methods: {
     ChangeSelectedSonSauce: function (bolean) {
       bolean === true ? (this.step = 3) : (this.step = 2);
     },
-    ChangeSelectedSonSize: function () {
+    ChangeSelectedSonSize: function (bolean, idItem) {
       this.selectedSon = !this.selectedSon;
       this.selectedSon === true ? (this.step = 2) : (this.step = 1);
       // console.log("ChangeSelectedSon: " + this.selectedSon);
+      if (bolean) {
+        let object = {
+          id: 0,
+          category: "",
+          idItem: 0,
+          quanty: 0,
+        };
+        let size = this.ingredientes.sizes[idItem];
+
+        this.pizza.scale = size.scale;
+        this.totalItems += 1;
+
+        object.id = uuid();
+        object.category = "sizes";
+        object.idItem = idItem;
+        object.quanty = 1;
+
+        this.pizza.items.push(object);
+        console.log(this.pizza);
+        this.sendData();
+      }
+    },
+    sendData: function () {
+      this.$emit("sendDataCheckIntermediary", this.pizza);
     },
   },
   components: {
@@ -137,9 +173,9 @@ export default {
     BTab,
   },
   directives: { "b-tabs": BTabs, "b-tab": BTab },
-  // created() {
-  //   console.log(super.ingredientes.condiments.length);
-  // },
+  created() {
+    this.pizza.id = uuid();
+  },
 };
 
 var triggerTabList = [].slice.call(document.querySelectorAll("#myTab button"));
@@ -151,6 +187,14 @@ triggerTabList.forEach(function (triggerEl) {
     tabTrigger.show();
   });
 });
+
+// if (Object.keys(data).length > 0) {
+//         this.totalValue = 0;
+
+//         this.pedido.pizzas.push(data);
+//         this.quanty = this.pedido.pizzas.length;
+//         // for
+//       }
 </script>
 
 <style scoped>

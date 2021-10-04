@@ -62,7 +62,15 @@
 <script>
 export default {
   name: "CardItem",
-  props: ["name", "price", "img", "description", "max", "broSelected"],
+  props: [
+    "name",
+    "price",
+    "img",
+    "description",
+    "max",
+    "broSelected",
+    "idItem",
+  ],
   data() {
     return {
       select: false,
@@ -79,8 +87,7 @@ export default {
     },
     changeSelect: function () {
       this.select = !this.select;
-      // console.log(this.select);
-      this.$emit("itemSelect", this.select);
+      this.$emit("itemSelect", this.select, this.idItem);
     },
     changeDisabled: function () {
       if (this.broSelected) {

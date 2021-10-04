@@ -4,11 +4,13 @@
     <ContentCreateYourPizza
       v-if="pedido.pizzas[pedido.select] != undefined"
       v-on:dataDos="updateStateContent"
+      v-on:dataCheack="UpdateDataCheack"
       v-bind:pizzaSelect="pedido.pizzas[pedido.select]"
     />
     <ContentCreateYourPizza
       v-else
       v-on:dataDos="updateStateContent"
+      v-on:dataCheack="UpdateDataCheack"
       v-bind:pizzaSelect="undefined"
     />
   </div>
@@ -62,6 +64,9 @@ export default {
         "data",
         this.dataCheck & this.dataCreateYourPizza ? true : false
       );
+    },
+    UpdateDataCheack: function (data) {
+      this.pedido.pizzas.push(data);
     },
   },
   created() {

@@ -35,7 +35,10 @@
           </div>
         </div>
         <div class="col-md-12 col-lg-8">
-          <CardIngredients v-bind:ingredientes="ingredientes" />
+          <CardIngredients
+            v-bind:ingredientes="ingredientes"
+            v-on:sendDataCheckIntermediary="intermediateDataCheck"
+          />
         </div>
       </div>
     </div>
@@ -57,12 +60,19 @@ export default {
         sauces: {},
         condiments: {},
       },
+      pizza: {},
       data: false,
     };
   },
   components: {
     CardIngredients,
     CardRepresentation,
+  },
+  methods: {
+    intermediateDataCheck: function (data) {
+      this.$emit("dataCheack", data);
+      console.log("intermediateDataCheck");
+    },
   },
   created() {
     const data = async () => {

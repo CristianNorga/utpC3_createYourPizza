@@ -1,7 +1,7 @@
 <template>
   <div class="C-cardPizza card align-items-center text-center py-1 mx-1">
     <div class="cardPizza_circle--s col-sm-12 rounded-circle border"></div>
-    <div class="cardPizza_number col-sm-12">#{{ idItem }}</div>
+    <div class="cardPizza_number col-sm-12"></div>
   </div>
 </template>
 
