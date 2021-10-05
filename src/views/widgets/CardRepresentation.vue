@@ -47,9 +47,17 @@
           <tbody v-if="Object.keys(ingredientes.sizes).length >= 1">
             <tr v-for="item in pizzaSelect.items" v-bind:key="item.id">
               <th scope="row">{{ item.quanty }}</th>
-              <td>{{ ingredientes[item.category][item.idItem].name }}</td>
+              <td>
+                {{ ingredientes[item.category][item.idItem].type }}
+              </td>
               <td scope="row" class="text-end">
-                {{ ingredientes[item.category][item.idItem].price }}
+                {{ ingredientes[item.category][item.idItem].precio }}
+                {{
+                  (this.totalValue += searchItem(
+                    ingredientes[item.category],
+                    item.idItem
+                  ).precio)
+                }}
               </td>
               <!-- <td class="text-end">
                 <button
@@ -81,7 +89,7 @@
               <td scope="row" class="text-end" colspan="2">
                 {{ pizzaSelect.totalItems }}
               </td>
-              <td scope="row" colspan="1"></td>
+              <td scope="row" colspan="1">{{ this.totalValue }}</td>
             </tr>
           </tfoot>
         </table>
@@ -97,6 +105,11 @@
 <script>
 export default {
   props: ["pizzaSelect", "ingredientes"],
+  data() {
+    return {
+      totalValue: 0,
+    };
+  },
 };
 </script>
 

@@ -71,13 +71,13 @@ export default {
   methods: {
     intermediateDataCheck: function (data) {
       this.$emit("dataCheack", data);
-      console.log("intermediateDataCheck");
     },
   },
   created() {
     const data = async () => {
       try {
         let data = await runRequest.collection.inventory();
+        console.log(data);
         this.ingredientes = data;
         this.$emit("dataDos", Object.keys(data).length > 0 ? false : true);
       } catch (error) {

@@ -24,13 +24,13 @@
             v-bind:key="s.id"
           >
             <CardItem
-              v-bind:idItem="s.id"
-              v-bind:name="s.size"
-              v-bind:price="s.price"
+              v-bind:idItem="s._id"
+              v-bind:name="s.type"
+              v-bind:price="s.precio.$numberDecimal"
               v-bind:img="s.img"
               v-bind:max="1"
-              v-bind:description="s.portion + ' porcion(es)'"
-              v-on:itemSelect="ChangeSelectedSonSize"
+              v-bind:description="s.descripcion"
+              v-on:itemSelect="changeSelectedSonSize"
               v-bind:broSelected="selectedSon"
             />
           </div>
@@ -58,13 +58,13 @@
             v-bind:key="s2.id"
           >
             <CardItem
-              v-bind:idItem="s2.id"
-              v-bind:name="s2.name"
-              v-bind:price="s2.price"
+              v-bind:idItem="s2._id"
+              v-bind:name="s2.type"
+              v-bind:price="s2.precio"
               v-bind:img="s2.img"
               v-bind:max="1"
-              v-on:itemSelect="ChangeSelectedSonSauce"
-              v-bind:description="s2.description"
+              v-on:itemSelect="changeSelectedSonSauce"
+              v-bind:description="s2.descripcion"
             />
           </div>
         </div>
@@ -94,12 +94,12 @@
             v-bind:key="p.id"
           >
             <CardItem
-              v-bind:idItem="p.id"
-              v-bind:name="p.name"
-              v-bind:price="p.price"
+              v-bind:idItem="p._id"
+              v-bind:name="p.type"
+              v-bind:price="p.precio.$numberDecimal"
               v-bind:img="p.img"
               v-bind:max="2"
-              v-bind:description="p.description"
+              v-bind:description="p.descripcion"
             />
           </div>
         </div>
@@ -134,10 +134,55 @@ export default {
     };
   },
   methods: {
-    ChangeSelectedSonSauce: function (bolean) {
-      bolean === true ? (this.step = 3) : (this.step = 2);
+    changeSelectedSonSize: function (bolean, _id) {
+      this.selectedSon = !this.selectedSon;
+      this.selectedSon === true ? (this.step = 2) : (this.step = 1);
+      // console.log("ChangeSelectedSon: " + this.selectedSon);
+      if (bolean) {
+        // let size = this.ingredientes.sizes[_id];
+        switch (this.ingredientes.sizes[_id].sigla) {
+          case "S":
+            this.pizza.scale = 1;
+            break;
+          case "M":
+            this.pizza.scale = 2;
+            break;
+          case "L":
+            this.pizza.scale = 3;
+            break;
+          case "XL":
+            this.pizza.scale = 4;
+            break;
+
+          default:
+            break;
+        }
+
+        this.sendData();
+      }
     },
-    ChangeSelectedSonSize: function (bolean, idItem) {
+    changeSelectedSonSauce: function (bolean, _id) {
+      bolean === true ? (this.step = 3) : (this.step = 2);
+      if (bolean) {
+        let object = {
+          id: 0,
+          category: "",
+          idItem: 0,
+          quanty: 0,
+        };
+        // let size = this.ingredientes.sizes[_id];
+        this.totalItems += 1;
+
+        object.id = uuid();
+        object.category = "sauces";
+        object.idItem = _id;
+        object.quanty = 1;
+
+        this.pizza.items.push(object);
+        this.sendData();
+      }
+    },
+    changeSelectedSonCondiment: function (bolean, _id) {
       this.selectedSon = !this.selectedSon;
       this.selectedSon === true ? (this.step = 2) : (this.step = 1);
       // console.log("ChangeSelectedSon: " + this.selectedSon);
@@ -148,18 +193,39 @@ export default {
           idItem: 0,
           quanty: 0,
         };
-        let size = this.ingredientes.sizes[idItem];
+        // let size = this.ingredientes.sizes[_id];
+        let size;
+        for (let x in this.ingredientes.sizes) {
+          if (this.ingredientes.sizes[x]._id == _id) {
+            size = this.ingredientes.sizes[x];
+            break;
+          }
+        }
+        switch (size.sigla) {
+          case "S":
+            this.pizza.scale = 1;
+            break;
+          case "M":
+            this.pizza.scale = 2;
+            break;
+          case "L":
+            this.pizza.scale = 3;
+            break;
+          case "XL":
+            this.pizza.scale = 4;
+            break;
 
-        this.pizza.scale = size.scale;
+          default:
+            break;
+        }
         this.totalItems += 1;
 
         object.id = uuid();
         object.category = "sizes";
-        object.idItem = idItem;
+        object.idItem = _id;
         object.quanty = 1;
 
         this.pizza.items.push(object);
-        console.log(this.pizza);
         this.sendData();
       }
     },

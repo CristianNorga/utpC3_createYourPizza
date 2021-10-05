@@ -66,7 +66,19 @@ export default {
       );
     },
     UpdateDataCheack: function (data) {
-      this.pedido.pizzas.push(data);
+      let exist = false;
+      let ItemExisting;
+      for (let x in this.pedido.pizzas) {
+        if (this.pedido.pizzas[x].id == data.id) {
+          exist = true;
+          ItemExisting = x;
+        }
+      }
+      if (exist) {
+        this.pedido.pizzas[ItemExisting].items.push(data.items);
+      } else {
+        this.pedido.pizzas.push(data);
+      }
     },
   },
   created() {

@@ -1,6 +1,6 @@
 let protocol = "http",
   location = "localhost",
-  port = 3034;
+  port = 3000;
 let BASE_URL = `${protocol}://${location}:${port}/`;
 let { dataInventory } = require("./collections/inventory"); //all
 
