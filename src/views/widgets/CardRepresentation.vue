@@ -2,7 +2,9 @@
   <div class="card row d-flex mx-0">
     <div class="card-title position-absolute">
       <h3 class="position-relative cardPizza_id">
-        <span v-if="pizzaSelect == undefined">#{{ pizzaSelect.id }}</span>
+        <span v-if="pizzaSelect == undefined"># </span>
+        <span v-else># 1</span>
+        <!-- <span v-else>#{{ pizzaSelect.id }}</span> -->
       </h3>
     </div>
     <div
@@ -23,10 +25,10 @@
     <div class="text-lg-center px-md-2">
       <h5>
         Pizza
-        <span v-if="pizzaSelect.scale == 1">Small 1 porcion</span>
-        <span v-else-if="pizzaSelect.scale == 2">Medium 4 porciones</span>
-        <span v-else-if="pizzaSelect.scale == 3">Large 6 porciones</span>
-        <span v-else>Extra Large 8 porciones</span>
+        <span v-if="pizza.scale == 1">Personal 15cm</span>
+        <span v-else-if="pizza.scale == 2">Mediana 30 cm</span>
+        <span v-else-if="pizza.scale == 3">Grande 35 cm</span>
+        <span v-else>Extra Grande 40 cm</span>
 
         <!-- {{ ingredientes.sizes  }} -->
       </h5>
@@ -44,59 +46,39 @@
               <!-- <th class="text-end" scope="col">Acciones</th> -->
             </tr>
           </thead>
-          <tbody v-if="Object.keys(ingredientes.sizes).length >= 1">
+          <tbody v-if="Object.keys(pizzaSelect.items).length >= 1">
             <tr v-for="item in pizzaSelect.items" v-bind:key="item.id">
               <th scope="row">{{ item.quanty }}</th>
               <td>
                 {{ ingredientes[item.category][item.idItem].type }}
               </td>
-              <td scope="row" class="text-end">
+              <td scope="row" class="text-end" v-if="item.category == 'sauces'">
                 {{ ingredientes[item.category][item.idItem].precio }}
+              </td>
+              <td scope="row" class="text-end" v-else>
                 {{
-                  (this.totalValue += searchItem(
-                    ingredientes[item.category],
-                    item.idItem
-                  ).precio)
+                  ingredientes[item.category][item.idItem].precio.$numberDecimal
                 }}
               </td>
-              <!-- <td class="text-end">
-                <button
-                  v-bind:class="item.quanty >= 2 ? 'disabled' : ''"
-                  v-bind:disabled="item.quanty >= 2"
-                  type="button"
-                  class="
-                    pizza-summary_button--add
-                    btn btn-sm btn-outline-success
-                    rounded-circle
-                  "
-                ></button>
-
-                <button
-                  type="button"
-                  class="
-                    pizza-summary_button--remove
-                    btn btn-sm btn-outline-danger
-                    rounded-circle
-                  "
-                  v-bind:class="item.quanty <= 0 ? 'disabled' : ''"
-                  v-bind:disabled="item.quanty <= 0"
-                ></button>
-              </td> -->
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td scope="row" class="text-end" colspan="2">
+              <td scope="row" colspan="1">
                 {{ pizzaSelect.totalItems }}
               </td>
-              <td scope="row" colspan="1">{{ this.totalValue }}</td>
+              <td class="text-end" scope="row" colspan="2">
+                {{ pizzaSelect.totalValue }}
+              </td>
             </tr>
           </tfoot>
         </table>
       </div>
 
       <div class="text-center py-2">
-        <button class="btn btn-success">Confirmar</button>
+        <button v-on:click="confirmCheck" class="btn btn-success">
+          Confirmar
+        </button>
       </div>
     </div>
   </div>
@@ -107,8 +89,17 @@ export default {
   props: ["pizzaSelect", "ingredientes"],
   data() {
     return {
-      totalValue: 0,
+      boleanItems: false,
+      pizza: {},
     };
+  },
+  methods: {
+    confirmCheck: function () {
+      this.$emit("confirmCheck");
+    },
+  },
+  created() {
+    this.pizza = this.pizzaSelect;
   },
 };
 </script>

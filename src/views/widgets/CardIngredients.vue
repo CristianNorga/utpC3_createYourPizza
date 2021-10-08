@@ -100,6 +100,7 @@
               v-bind:img="p.img"
               v-bind:max="2"
               v-bind:description="p.descripcion"
+              v-on:itemSelect="changeSelectedSonCondiment"
             />
           </div>
         </div>
@@ -116,12 +117,13 @@ import { v1 as uuid } from "uuid";
 
 export default {
   name: "CardIngredients",
-  props: ["ingredientes"],
+  props: ["ingredientes, pizzaSelect"],
   data() {
     return {
       showPrices: false,
       value: 0,
       selectedSon: false,
+      size: "",
       step: 1,
       pizza: {
         id: 0,
@@ -129,7 +131,8 @@ export default {
         select: true,
         confirm: false,
         totalItems: 0,
-        items: [],
+        totalValue: 0,
+        items: {},
       },
     };
   },
@@ -157,7 +160,15 @@ export default {
           default:
             break;
         }
-
+        this.size = _id;
+        this.pizza.totalValue += parseInt(
+          this.ingredientes.sizes[_id].precio.$numberDecimal
+        );
+        this.sendData();
+      } else {
+        this.pizza.totalValue -= parseInt(
+          this.ingredientes.sizes[this.size].precio.$numberDecimal
+        );
         this.sendData();
       }
     },
@@ -171,65 +182,72 @@ export default {
           quanty: 0,
         };
         // let size = this.ingredientes.sizes[_id];
-        this.totalItems += 1;
+        this.pizza.totalItems += 1;
+        this.pizza.totalValue += 1000;
 
         object.id = uuid();
         object.category = "sauces";
         object.idItem = _id;
         object.quanty = 1;
 
-        this.pizza.items.push(object);
+        this.pizza.items[_id] = object;
+        this.sendData();
+      } else {
+        this.pizza.totalValue -= 1000;
+        this.pizza.totalItems -= 1;
+        delete this.pizza.items[_id];
         this.sendData();
       }
     },
-    changeSelectedSonCondiment: function (bolean, _id) {
-      this.selectedSon = !this.selectedSon;
-      this.selectedSon === true ? (this.step = 2) : (this.step = 1);
+    changeSelectedSonCondiment: function (mode, _id) {
       // console.log("ChangeSelectedSon: " + this.selectedSon);
-      if (bolean) {
-        let object = {
-          id: 0,
-          category: "",
-          idItem: 0,
-          quanty: 0,
-        };
-        // let size = this.ingredientes.sizes[_id];
-        let size;
-        for (let x in this.ingredientes.sizes) {
-          if (this.ingredientes.sizes[x]._id == _id) {
-            size = this.ingredientes.sizes[x];
-            break;
+
+      switch (mode) {
+        case "-":
+          this.pizza.totalValue -= parseInt(
+            this.ingredientes.condiments[_id].precio.$numberDecimal
+          );
+          this.pizza.totalItems -= 1;
+          if (this.pizza.items[_id].quanty == 2) {
+            this.pizza.items[_id].quanty = 1;
+            this.sendData();
+          } else {
+            delete this.pizza.items[_id];
           }
-        }
-        switch (size.sigla) {
-          case "S":
-            this.pizza.scale = 1;
-            break;
-          case "M":
-            this.pizza.scale = 2;
-            break;
-          case "L":
-            this.pizza.scale = 3;
-            break;
-          case "XL":
-            this.pizza.scale = 4;
-            break;
+          break;
+        case "+":
+          this.pizza.totalItems += 1;
+          this.pizza.totalValue += parseInt(
+            this.ingredientes.condiments[_id].precio.$numberDecimal
+          );
 
-          default:
-            break;
-        }
-        this.totalItems += 1;
+          if (this.pizza.items[_id] == undefined) {
+            let object = {
+              id: 0,
+              category: "",
+              idItem: 0,
+              quanty: 0,
+            };
 
-        object.id = uuid();
-        object.category = "sizes";
-        object.idItem = _id;
-        object.quanty = 1;
+            object.id = uuid();
+            object.category = "condiments";
+            object.idItem = _id;
+            object.quanty = 1;
 
-        this.pizza.items.push(object);
-        this.sendData();
+            this.pizza.items[_id] = object;
+            this.sendData();
+          } else {
+            this.pizza.items[_id].quanty = 2;
+            this.sendData();
+          }
+          break;
+
+        default:
+          break;
       }
     },
     sendData: function () {
+      // console.log(this.pizza);
       this.$emit("sendDataCheckIntermediary", this.pizza);
     },
   },
@@ -241,6 +259,16 @@ export default {
   directives: { "b-tabs": BTabs, "b-tab": BTab },
   created() {
     this.pizza.id = uuid();
+  },
+  beforeMount() {
+    // console.log(this.ingredientes);
+    console.log("beforeMount ✔");
+  },
+  beforeUpdate() {
+    console.log("beforeUpdate ✔");
+  },
+  beforeCreate() {
+    console.log("beforeCreate ✔");
   },
 };
 

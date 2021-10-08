@@ -1,14 +1,25 @@
-let protocol = "http",
-  location = "localhost",
-  port = 3000;
-let BASE_URL = `${protocol}://${location}:${port}/`;
-let { dataInventory } = require("./collections/inventory"); //all
+import { dataInventory } from "./collections/inventory"; //all
+import { dataCheck } from "./collections/check";
 
 // (typeReq, collection, options = {})
 const runRequest = {
   collection: {
-    inventory() {
-      let option = dataInventory.listAll(BASE_URL);
+    async inventory() {
+      let option = await dataInventory.listAll();
+      return option;
+    },
+    async check(type, data) {
+      let option;
+      switch (type) {
+        case "create":
+          option = await dataCheck.create(data);
+          break;
+        case "read":
+          option = await dataCheck.read(data);
+          break;
+        default:
+          break;
+      }
       return option;
     },
   },

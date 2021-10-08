@@ -1,17 +1,19 @@
 <template>
   <div class="page-wrapper pb-3">
-    <content-header v-bind:pedido="pedido" />
+    <ContentHeader v-bind:pedido="pedido" v-on:getPizza="getPizza" />
     <ContentCreateYourPizza
       v-if="pedido.pizzas[pedido.select] != undefined"
       v-on:dataDos="updateStateContent"
       v-on:dataCheack="UpdateDataCheack"
       v-bind:pizzaSelect="pedido.pizzas[pedido.select]"
+      v-on:confirmCheck="confirmCheck"
     />
     <ContentCreateYourPizza
       v-else
       v-on:dataDos="updateStateContent"
       v-on:dataCheack="UpdateDataCheack"
       v-bind:pizzaSelect="undefined"
+      v-on:confirmCheck="confirmCheck"
     />
   </div>
 </template>
@@ -19,28 +21,7 @@
 <script>
 import ContentHeader from "../widgets/ContentHeader.vue";
 import ContentCreateYourPizza from "../widgets/Content-CreateYourPizza.vue";
-
-// {
-//             id: 1,
-//             scale: 4,
-//             select: true,
-//             confirm: false,
-//             totalItems: 5000,
-//             items: [
-//               {
-//                 id: 1,
-//                 category: "condiments",
-//                 idItem: "uid1",
-//                 quanty: 1,
-//               },
-//               {
-//                 id: 2,
-//                 category: "condiments",
-//                 idItem: "uid2",
-//                 quanty: 2,
-//               },
-//             ],
-//           },
+import runRequest from "../../model/runRequest.js";
 
 export default {
   name: "CreatePizza",
@@ -51,7 +32,7 @@ export default {
         confirmed: 0,
         totalValue: 0,
         select: 0,
-        pizzas: [],
+        pizzas: {},
       },
       dataCreateYourPizza: false,
       dataCheck: true,
@@ -66,19 +47,41 @@ export default {
       );
     },
     UpdateDataCheack: function (data) {
-      let exist = false;
-      let ItemExisting;
-      for (let x in this.pedido.pizzas) {
-        if (this.pedido.pizzas[x].id == data.id) {
-          exist = true;
-          ItemExisting = x;
-        }
-      }
-      if (exist) {
-        this.pedido.pizzas[ItemExisting].items.push(data.items);
+      if (this.pedido.pizzas[data.id] != undefined) {
+        this.pedido.pizzas[data.id].scale = data.scale;
+        this.pedido.pizzas[data.id].select = data.select;
+        this.pedido.pizzas[data.id].confirm = data.confirm;
+        this.pedido.pizzas[data.id].totalItems = data.totalItems;
+        this.pedido.pizzas[data.id].totalValue = data.totalValue;
+        this.pedido.pizzas[data.id].items = data.items;
       } else {
-        this.pedido.pizzas.push(data);
+        this.pedido.select = data.id;
+        this.pedido.pizzas[data.id] = data;
       }
+    },
+    confirmCheck: async function () {
+      try {
+        let data = await runRequest.collection.check("create", this.pedido);
+        if (data.acknowledged === true) {
+          window.location.reload();
+          alert("pedido creado con el id: " + data.id);
+        }
+      } catch (error) {
+        console.log("error: " + error);
+      }
+    },
+    getPizza: async function (id) {
+      let data = await runRequest.collection.check("read", id);
+      if (data.length >= 1) {
+        this.pedido.quanty = data[0].quanty;
+        this.pedido.confirmed = data[0].confirmed;
+        this.pedido.totalValue = data[0].totalValue;
+        this.pedido.select = data[0].select;
+        this.pedido.pizzas = data[0].pizzas;
+      } else {
+        alert("no se encontro ningun resultado");
+      }
+      console.log(data);
     },
   },
   created() {

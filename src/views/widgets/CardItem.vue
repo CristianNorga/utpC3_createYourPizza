@@ -81,9 +81,11 @@ export default {
   methods: {
     addToQuanty: function () {
       this.quanty += 1;
+      this.$emit("itemSelect", "+", this.idItem);
     },
     subtractToQuanty: function () {
       this.quanty += -1;
+      this.$emit("itemSelect", "-", this.idItem);
     },
     changeSelect: function () {
       this.select = !this.select;

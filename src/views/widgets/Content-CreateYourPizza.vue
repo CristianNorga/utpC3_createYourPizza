@@ -7,6 +7,7 @@
             v-if="pizzaSelect != undefined"
             v-bind:pizzaSelect="pizzaSelect"
             v-bind:ingredientes="ingredientes"
+            v-on:confirmCheck="confirmCheck"
           />
           <div v-else class="card">
             <div class="card-title text-center">
@@ -36,6 +37,13 @@
         </div>
         <div class="col-md-12 col-lg-8">
           <CardIngredients
+            v-if="pizzaSelect != undefined"
+            v-bind:pizzaSelect="pizzaSelect"
+            v-bind:ingredientes="ingredientes"
+            v-on:sendDataCheckIntermediary="intermediateDataCheck"
+          />
+          <CardIngredients
+            v-else
             v-bind:ingredientes="ingredientes"
             v-on:sendDataCheckIntermediary="intermediateDataCheck"
           />
@@ -69,22 +77,24 @@ export default {
     CardRepresentation,
   },
   methods: {
+    confirmCheck: function () {
+      this.$emit("confirmCheck");
+    },
     intermediateDataCheck: function (data) {
       this.$emit("dataCheack", data);
     },
   },
-  created() {
-    const data = async () => {
-      try {
-        let data = await runRequest.collection.inventory();
-        console.log(data);
-        this.ingredientes = data;
-        this.$emit("dataDos", Object.keys(data).length > 0 ? false : true);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    data();
+  async beforeCreate() {
+    try {
+      console.log("beforeRequest");
+      let data = await runRequest.collection.inventory();
+      console.log("afterRequest: " + data);
+      this.ingredientes = data;
+      console.log(this.ingredientes);
+      this.$emit("dataDos", Object.keys(data).length > 0 ? false : true);
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 </script>
