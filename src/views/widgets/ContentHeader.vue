@@ -28,7 +28,10 @@
           >
             Consultar
           </button>
-          <button class="btn-query btn btn-outline-info mx-1">
+          <button
+            v-on:click="updatePizza"
+            class="btn-query btn btn-outline-info mx-1"
+          >
             Actualizar
           </button>
           <button class="btn-query btn btn-outline-danger mx-1">
@@ -69,6 +72,9 @@ export default {
       } else {
         alert("porfavor escriba un id valido");
       }
+    },
+    updatePizza: function () {
+      this.$emit("updatePizza");
     },
   },
   components: {

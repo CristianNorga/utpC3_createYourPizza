@@ -41,6 +41,8 @@
             v-bind:pizzaSelect="pizzaSelect"
             v-bind:ingredientes="ingredientes"
             v-on:sendDataCheckIntermediary="intermediateDataCheck"
+            v-bind:consulted="this.consulted"
+            v-on:queryLoaded="queryLoaded"
           />
           <CardIngredients
             v-else
@@ -60,7 +62,7 @@ import runRequest from "../../model/runRequest";
 
 export default {
   name: "ContentBody",
-  props: ["pizzaSelect"],
+  props: ["pizzaSelect", "consulted"],
   data() {
     return {
       ingredientes: {
@@ -83,14 +85,14 @@ export default {
     intermediateDataCheck: function (data) {
       this.$emit("dataCheack", data);
     },
+    queryLoaded: function () {
+      this.$emit("queryLoaded");
+    },
   },
-  async beforeCreate() {
+  async created() {
     try {
-      console.log("beforeRequest");
       let data = await runRequest.collection.inventory();
-      console.log("afterRequest: " + data);
       this.ingredientes = data;
-      console.log(this.ingredientes);
       this.$emit("dataDos", Object.keys(data).length > 0 ? false : true);
     } catch (error) {
       console.log(error);

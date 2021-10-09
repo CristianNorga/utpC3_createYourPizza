@@ -5,7 +5,7 @@ let endpoint = "check";
 const check = {
   async create(data) {
     // throw new Error('500: Server error');
-    let url = BASE_URL + endpoint;
+    let url = `${BASE_URL}${endpoint}`;
     let response = await callApi.create(url, data);
     return response.data;
   },
@@ -14,8 +14,12 @@ const check = {
     let response = await callApi.get(url);
     return response.data;
   },
-  update() {},
-  remove() {},
+  async update(data) {
+    let url = `${BASE_URL}${endpoint}`;
+    let response = await callApi.update(url, data);
+    return response.data;
+  },
+  async remove() {},
 };
 
 export { check as dataCheck };

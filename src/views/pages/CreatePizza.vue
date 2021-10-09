@@ -1,12 +1,17 @@
 <template>
   <div class="page-wrapper pb-3">
-    <ContentHeader v-bind:pedido="pedido" v-on:getPizza="getPizza" />
+    <ContentHeader
+      v-bind:pedido="pedido"
+      v-on:getPizza="getPizza"
+      v-on:updatePizza="updatePizza"
+    />
     <ContentCreateYourPizza
       v-if="pedido.pizzas[pedido.select] != undefined"
       v-on:dataDos="updateStateContent"
       v-on:dataCheack="UpdateDataCheack"
       v-bind:pizzaSelect="pedido.pizzas[pedido.select]"
       v-on:confirmCheck="confirmCheck"
+      v-bind:consulted="consulted"
     />
     <ContentCreateYourPizza
       v-else
@@ -27,6 +32,8 @@ export default {
   name: "CreatePizza",
   data() {
     return {
+      consulted: false,
+      idQuery: "",
       pedido: {
         quanty: 0,
         confirmed: 0,
@@ -71,17 +78,38 @@ export default {
       }
     },
     getPizza: async function (id) {
-      let data = await runRequest.collection.check("read", id);
-      if (data.length >= 1) {
-        this.pedido.quanty = data[0].quanty;
-        this.pedido.confirmed = data[0].confirmed;
-        this.pedido.totalValue = data[0].totalValue;
-        this.pedido.select = data[0].select;
-        this.pedido.pizzas = data[0].pizzas;
-      } else {
-        alert("no se encontro ningun resultado");
+      try {
+        let data = await runRequest.collection.check("read", id);
+        if (data.length >= 1) {
+          this.pedido.quanty = data[0].quanty;
+          this.pedido.confirmed = data[0].confirmed;
+          this.pedido.totalValue = data[0].totalValue;
+          this.pedido.select = data[0].select;
+          this.pedido.pizzas = data[0].pizzas;
+          this.consulted = true;
+          this.idQuery = data[0]._id;
+        } else {
+          alert("no se encontro ningun resultado");
+        }
+      } catch (error) {
+        console.log(error);
       }
-      console.log(data);
+    },
+    queryLoaded: function () {
+      this.consulted = true;
+    },
+    updatePizza: async function () {
+      try {
+        this.pedido["_id"] = this.idQuery;
+        let data = await runRequest.collection.check("update", this.pedido);
+        if (data.acknowledged === true) {
+          window.location.reload();
+          console.log(data);
+          // alert("pedido creado con el id: " + data.id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   created() {

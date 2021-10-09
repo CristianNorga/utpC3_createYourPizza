@@ -17,6 +17,9 @@ const runRequest = {
         case "read":
           option = await dataCheck.read(data);
           break;
+        case "update":
+          option = await dataCheck.update(data);
+          break;
         default:
           break;
       }

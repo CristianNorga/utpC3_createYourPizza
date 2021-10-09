@@ -117,7 +117,7 @@ import { v1 as uuid } from "uuid";
 
 export default {
   name: "CardIngredients",
-  props: ["ingredientes, pizzaSelect"],
+  props: ["ingredientes", "pizzaSelect", "consulted"],
   data() {
     return {
       showPrices: false,
@@ -260,15 +260,23 @@ export default {
   created() {
     this.pizza.id = uuid();
   },
-  beforeMount() {
-    // console.log(this.ingredientes);
-    console.log("beforeMount ✔");
-  },
-  beforeUpdate() {
-    console.log("beforeUpdate ✔");
-  },
-  beforeCreate() {
-    console.log("beforeCreate ✔");
+  watch: {
+    // cada vez que la pregunta cambie, esta función será ejecutada
+    consulted: function () {
+      console.log("consulted: " + this.consulted);
+      if (this.consulted == true) {
+        this.step = 3;
+        console.log(this.pizzaSelect);
+        this.pizza.id = this.pizzaSelect.id;
+        this.pizza.scale = this.pizzaSelect.scale;
+        this.pizza.select = this.pizzaSelect.select;
+        this.pizza.confirm = this.pizzaSelect.confirm;
+        this.pizza.totalItems = this.pizzaSelect.totalItems;
+        this.pizza.totalValue = this.pizzaSelect.totalValue;
+        this.pizza.items = this.pizzaSelect.items;
+        this.$emit("queryLoaded");
+      }
+    },
   },
 };
 
