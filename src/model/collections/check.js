@@ -19,7 +19,11 @@ const check = {
     let response = await callApi.update(url, data);
     return response.data;
   },
-  async remove() {},
+  async remove(_id) {
+    let url = `${BASE_URL}${endpoint}?_id=${_id}`;
+    let response = await callApi.remove(url);
+    return response.data;
+  },
 };
 
 export { check as dataCheck };

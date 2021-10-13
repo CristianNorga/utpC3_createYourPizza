@@ -34,7 +34,10 @@
           >
             Actualizar
           </button>
-          <button class="btn-query btn btn-outline-danger mx-1">
+          <button
+            v-on:click="deletePizza"
+            class="btn-query btn btn-outline-danger mx-1"
+          >
             Eliminar
           </button>
         </div>
@@ -75,6 +78,9 @@ export default {
     },
     updatePizza: function () {
       this.$emit("updatePizza");
+    },
+    deletePizza: function () {
+      this.$emit("deletePizza", this.id);
     },
   },
   components: {

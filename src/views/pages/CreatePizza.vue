@@ -4,6 +4,7 @@
       v-bind:pedido="pedido"
       v-on:getPizza="getPizza"
       v-on:updatePizza="updatePizza"
+      v-on:deletePizza="deletePizza"
     />
     <ContentCreateYourPizza
       v-if="pedido.pizzas[pedido.select] != undefined"
@@ -70,8 +71,8 @@ export default {
       try {
         let data = await runRequest.collection.check("create", this.pedido);
         if (data.acknowledged === true) {
+          alert("pedido creado con el id: " + data.insertedId);
           window.location.reload();
-          alert("pedido creado con el id: " + data.id);
         }
       } catch (error) {
         console.log("error: " + error);
@@ -103,9 +104,19 @@ export default {
         this.pedido["_id"] = this.idQuery;
         let data = await runRequest.collection.check("update", this.pedido);
         if (data.acknowledged === true) {
+          alert("pedido actualizado correctamente");
           window.location.reload();
-          console.log(data);
-          // alert("pedido creado con el id: " + data.id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    deletePizza: async function (id) {
+      try {
+        let data = await runRequest.collection.check("remove", id);
+        if (data.acknowledged) {
+          alert("Pedido eliminado");
+          window.location.reload();
         }
       } catch (error) {
         console.log(error);

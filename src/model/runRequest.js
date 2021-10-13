@@ -20,6 +20,9 @@ const runRequest = {
         case "update":
           option = await dataCheck.update(data);
           break;
+        case "remove":
+          option = await dataCheck.remove(data);
+          break;
         default:
           break;
       }
