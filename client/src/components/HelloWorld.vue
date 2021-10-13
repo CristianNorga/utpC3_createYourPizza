@@ -54,7 +54,7 @@
     </div>
     <!-- uncompleted todos -->
     <div class="d-flex justify-center">
-      <h1>Unompleted ToDo</h1>
+      <h1>Todo Incompleto</h1>
     </div>
     <div v-for="todo in uncompletedTodos" :key="todo._id">
       <v-card class="mx-auto" color="white" dark max-width="800">
@@ -69,7 +69,7 @@
               >Done</v-btn
             >
             <v-btn @click="deleteTodo(todo._id)" class="mx-2" small color="red"
-              >Delete</v-btn
+              >Eliminar</v-btn
             >
           </v-list-item>
         </v-card-text>
@@ -78,7 +78,7 @@
 
     <!-- completed todos -->
     <div class="d-flex justify-center">
-      <h1>Completed ToDo</h1>
+      <h1>Todo Completo</h1>
     </div>
     <h1 class="text-center white--text">Completed Todos</h1>
     <div v-for="todo in completedTodos" :key="todo._id">
