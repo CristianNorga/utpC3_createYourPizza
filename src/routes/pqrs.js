@@ -1,0 +1,39 @@
+const express = require('express');
+const router = express.Router();
+const Task = require('../models/Pqrs');
+
+router.get('/',async(req, res)=>{
+  const tasks= await Task.find();
+    res.json(tasks);
+});
+
+router.get('/:id',async(req, res)=>{
+    const tasks= await Task.findById(req.params.id);
+      res.json(tasks);
+  });
+  
+
+router.post('/',async (req, res) =>{
+    const task = new Task(req.body);
+    await task.save()
+       //console.log(task);
+       res.json({
+           status: 'guardado'
+       });
+});
+
+router.put('/:id',async (req, res) =>{
+   await  Task.findByIdAndUpdate(req.params.id, req.body)
+   res.json({
+           status: 'Actualizado'
+       });
+});
+
+router.delete('/:id',async (req, res) =>{
+    await Task.findByIdAndRemove(req.params.id)
+    res.json({
+            status: 'Eliminado'
+        });
+ });
+
+module.exports=router;
