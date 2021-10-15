@@ -70,7 +70,7 @@
            </tr>
          </thead>
          <tbody>
-           <tr v-for="pqr of forms">
+           <tr v-for="pqr of forms" v-bind:key="pqr._id">
              <td>{{pqr.nombres}}</td>
               <td>{{pqr.apellidos}}</td>
                <td>{{pqr.contacto}}</td>
@@ -87,7 +87,7 @@
 
 </template>
 <script>
-
+const axios = require("axios");
 
   export default {
     data() {
@@ -113,16 +113,37 @@
     },
 
     methods: {
+  //     async create(url, data) {
+  //   // await simulateNetworkLatency();
+  //   let response = await axios.post(url, data);
+  //   return response.data;
+  // },
+  // async get(url) {
+  //   // await simulateNetworkLatency();
+  //   let response = await axios.get(url);
+  //   return response.data;
+  // },
+  // async update(url, data) {
+  //   // await simulateNetworkLatency();
+  //   let response = await axios.put(url, data);
+  //   return response.data;
+  // },
+  // async remove(url) {
+  //   // await simulateNetworkLatency();
+  //   let response = await axios.delete(url);
+  //   return response.data;
+  // },
       sendTask(event) {
         if(this.edit === false){
-          fetch('/api/pqrs',{
-              method:'POST',
-              body:JSON.stringify(this.form),
-              headers:{
-                  'Accept':'application/json',
-                  'Content-type':'application/json',
-              }
-          })
+          await axios.post('/api/pqrs', this.form);
+          // fetch('/api/pqrs',{
+          //     method:'POST',
+          //     body:JSON.stringify(this.form),
+          //     headers:{
+          //         'Accept':'application/json',
+          //         'Content-type':'application/json',
+          //     }
+          // })
           this.nombres='',
           this.apellidos='',
           this.correo= '',
