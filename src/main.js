@@ -6,14 +6,14 @@ import BootstrapVue from 'bootstrap-vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-Vue.use(VueAxios, axios)
+// Vue.use(VueAxios, axios)
 
 axios.defaults.baseURL = 'http://localhost:3001/api';
 
 Vue.use(BootstrapVue)
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './styles/bootstrap.css';
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 

@@ -30,7 +30,7 @@
                         <button type="submit">Entrar</button>
                     </b-form>
 
-                    <b-form  @submit="addToDo()"  class="form__register">
+                    <b-form  @submit="addUser()"  class="form__register">
                         <h2>Regístrarse</h2>
                         <input  type="text" placeholder="Nombre completo" required>
                         <input  type="text" placeholder="email" required>
@@ -76,7 +76,7 @@ export default {
   methods:{
   buscarUsuario(){
     console.log("Se ejecuta la busqueda");
-    this.axios.get("https://vast-ocean-84714.herokuapp.com/todo/completed").then(res =>{
+    axios.get("https://vast-reaches-37714.herokuapp.com/user").then(res =>{
       
       console.log(this.todos);
       this.usuarios = res.data;
@@ -87,9 +87,8 @@ export default {
   });
     })
   },
-  addToDo() {
-      this.axios
-        .post("https://vast-ocean-84714.herokuapp.com/todo/add", {
+  addUser() {
+    axios.post("https://vast-reaches-37714.herokuapp.com/user", {
           nombreCompleto: this.nombreCompleto,
           email: this.email,
           usuario: this.usuario,
@@ -103,7 +102,7 @@ export default {
           
         });
       this.newTodo = "";
-      console.log("Usuario creado exitosamente");
+      alert("Usuario creado exitosamente");
       window.location.reload();
       
     },
