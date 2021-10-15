@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-import vuetify from './plugins/vuetify'
 import router from './router'
 import store from './store'
 import BootstrapVue from 'bootstrap-vue'
@@ -9,16 +8,16 @@ import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios)
 
-axios.defaults.baseURL = 'https://vast-ocean-84714.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api';
 
 Vue.use(BootstrapVue)
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
 new Vue({
-    vuetify,
     router,
     store,
     render: h => h(App)
@@ -36,7 +35,6 @@ var caja_atras_login = document.querySelector(".caja__atras-login");
 var caja_atras_register = document.querySelector(".caja__atras-register");
 
 //FUNCIONES
-
 function anchoPage() {
 
     if (window.innerWidth > 850) {

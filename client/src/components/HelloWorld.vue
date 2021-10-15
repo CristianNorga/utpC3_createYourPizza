@@ -1,11 +1,11 @@
 <template>
-  <div class="hello">
-    
-    <body class="card-image" 
+<div>
+  <h2>{{msg}}</h2>
+   <body class="card-image" 
       :style="{ backgroundImage: 'url(' + require('@/assets/pizza1.jpg') + ')' }">
     <div>
         <h1>¡Bienvenidos a la pizza mía!</h1>
-
+        <button @click="deleteTodo(todo._id)">Delete</button>
         <main>
 
             <div class="contenedor_completo">
@@ -25,76 +25,24 @@
                   <b-form @submit.prevent="buscarUsuario()" v-if="show" class="form__login">
                   
                         <h2>Iniciar Sesión</h2>
-                        <input v-model="email" label="Add Todo" solo type="text" placeholder="Correo Electronico" required>
+                        <input  type="text" placeholder="email" required>
                         <input v-model="password" label="Add Todo" solo type="password" placeholder="Contraseña" required>
                         <button type="submit">Entrar</button>
-                        </b-form>
-                        
-                    
-                    
-                      <b-form @submit.prevent="addToDo()" v-if="show" class="form__login">
+                    </b-form>
+
+                    <b-form  @submit="addToDo()"  class="form__register">
                         <h2>Regístrarse</h2>
-                        <v-input v-model="nombreCompleto" label="Add Todo" solo type="text" placeholder="Nombre completo" required>
-                        <v-input v-model="newTodo" label="Add Todo" solo type="text" placeholder="newTodo" required>
-                        <input v-model="email" label="Add Todo" solo type="text" placeholder="email" required>
-                        <input v-model="usuario" label="Add Todo" solo type="text" placeholder="Usuario" required>
-                        <input v-model="direccion" label="Add Todo" solo type= "text" placeholder = "Direccion" required>
-                        <input v-model="password" label="Add Todo" solo type="password" placeholder="password" required>
-                        <input v-model="phone" label="Add Todo" solo type="number" placeholder= "phone" required>
+                        <input  type="text" placeholder="Nombre completo" required>
+                        <input  type="text" placeholder="email" required>
+                        <input  type="text" placeholder="Usuario" required>
+                        <input  type= "text" placeholder = "Direccion" required>
+                        <input  type="password" placeholder="password" required>
+                        <input  type="number" placeholder= "phone" required>
                         <button type="submit">Regístrarse</button>
-                      </b-form>
+                    </b-form>
                 </div>
             </div>
-            <div class="d-flex justify-center">
-      <v-btn @click="addToDo()" color="primary">Add ToDo</v-btn>
-    </div>
-    <div class="d-flex justify-center">
-      <h1>Response from server</h1>
-      <h3>{{message}}</h3>
-    </div>
-    <!-- uncompleted todos -->
-    <div class="d-flex justify-center">
-      <h1>Todo Incompleto</h1>
-    </div>
-    <div v-for="todo in uncompletedTodos" :key="todo._id">
-      <v-card class="mx-auto" color="white" dark max-width="800">
-        <v-card-text class="font-weight-bold title blue--text">
-          {{ todo.nombreCompleto }}:{{todo.email}}:{{ todo.usuario }}:{{todo.direccion}}:{{ todo.password }}:{{todo.phone}}
-          <v-list-item id="todo-list-item" class="grow">
-            <v-btn
-              @click="completeTodo(todo._id)"
-              class="mx-2"
-              small
-              color="green"
-              >Done</v-btn
-            >
-            <v-btn @click="deleteTodo(todo._id)" class="mx-2" small color="red"
-              >Eliminar</v-btn
-            >
-          </v-list-item>
-        </v-card-text>
-      </v-card>
-    </div>
-
-    <!-- completed todos -->
-    <div class="d-flex justify-center">
-      <h1>Todo Completo</h1>
-    </div>
-    <h1 class="text-center white--text">Completed Todos</h1>
-    <div v-for="todo in completedTodos" :key="todo._id">
-      <v-card class="mx-auto" color="blue" dark max-width="800">
-        <v-card-text class="font-weight-bold title white--text">
-          {{ todo.nombreCompleto }}:{{todo.email}}:{{ todo.usuario }}:{{todo.direccion}}:{{ todo.password }}:{{todo.phone}}
-          <v-list-item id="todo-list-item" class="grow">
-            <v-btn @click="deleteTodo(todo._id)" class="mx-2" small color="red"
-              >Delete</v-btn
-            >
-          </v-list-item>
-        </v-card-text>
-      </v-card>
-    </div>
-
-        </main>
+          </main>
         </div>
     </body>
    
@@ -106,15 +54,12 @@ export default {
   name: 'HelloWorld',
   data: () => ({
     nombreCompleto: "",
-    newToDo: "",
-    email: 0,
+    email: "",
     usuario: "",
-    dirrecion: "",
+    direccion: "",
     password: "",
-    phone: "",
-    uncompletedTodos: [],
-    completedTodos: [],
-    message:"",
+    phone: 0,
+    
   }),
   data(){
     return {
@@ -134,64 +79,36 @@ export default {
     this.axios.get("https://vast-ocean-84714.herokuapp.com/todo/completed").then(res =>{
       
       console.log(this.todos);
-      this.todos = res.data;
+      this.usuarios = res.data;
 
-  this.todos.forEach((value, index)=>{
+  this.usuarios.forEach((value, index)=>{
     console.log(value.email);
     console.log(value.password);
   });
     })
   },
-  methods: {
-    addToDo() {
-      axios
+  addToDo() {
+      this.axios
         .post("https://vast-ocean-84714.herokuapp.com/todo/add", {
-          todo: this.newTodo,
-          height: this.height
+          nombreCompleto: this.nombreCompleto,
+          email: this.email,
+          usuario: this.usuario,
+          direccion: this.direccion,
+          password: this.password,
+          phone: this.phone,
+
         })
         .then(response => {
           this.message = response.data;
           
         });
       this.newTodo = "";
+      console.log("Usuario creado exitosamente");
       window.location.reload();
+      
     },
-    completeTodo(todoID) {
-      axios
-        .post("https://vast-ocean-84714.herokuapp.com/todo/complete/" + todoID)
-        .then(response => {
-          console.log(response.data);
-          this.message= JSON.stringify(response.data);
-          window.location.reload();
-        });
-    },
-    deleteTodo(todoID) {
-      axios.delete("https://vast-ocean-84714.herokuapp.com/todo/" + todoID).then(response => {
-        console.log(response.data);
-        this.message= JSON.stringify(response.data);
-        window.location.reload();
-      });
-    }
-  },
-  created() {
-    setTimeout(()=>{
-      axios
-      .get("https://vast-ocean-84714.herokuapp.com/todo/uncompleted")
-      .then(response => (this.uncompletedTodos = response.data))
-      .catch(error => console.log(error));
-    // fetch completed task
-    axios
-      .get("https://vast-ocean-84714.herokuapp.com/completed")
-      .then(response => (this.completedTodos = response.data))
-      .catch(error => console.log(error));
-
-    }, 2000);
-    // fetch uncompleted task
   }
-},
 }
-
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -344,7 +261,17 @@ main {
 .form__register {
     display: none;
 }
-
+button {
+  padding: 10px 40px;
+    margin-top: 40px;
+    border: 2px solid #f2e8cf;
+    font-size: 14px;
+    background: #bc4749;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    }
 @media screen and (max-width: 850px) {
     main {
         margin-top: 50px;
@@ -366,7 +293,9 @@ main {
     }
     .cont__l-r form {
         position: relative;
+    
     }
 }
 
 </style>
+
