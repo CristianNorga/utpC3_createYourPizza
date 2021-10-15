@@ -4,6 +4,7 @@
       <img src="./assets/loaderPuff.svg" />
     </div>
     <Nav />
+    <!-- <router /> -->
     <CreatePizza v-on:data="changeStatusLoader" />
     <Footer />
   </div>
@@ -13,10 +14,12 @@
 import Nav from "./views/layouts/Nav.vue";
 import Footer from "./views/layouts/Footer.vue";
 import CreatePizza from "./views/pages/CreatePizza.vue";
+// import router from "./routes/index.js";
 
 export default {
   name: "App",
   components: {
+    // router,
     CreatePizza,
     Nav,
     Footer,

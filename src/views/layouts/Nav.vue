@@ -19,24 +19,37 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <a
-            href="#"
-            class="nav-link"
-            data-toggle="dropdown"
-            aria-expanded="true"
-          >
-            <img
-              src="../../assets/user.svg"
-              class="user-image--small rounded-circle shadow"
-              alt="User Image"
-            />
-            <span class="d-md-inline">Iniciar sesión / registrarseeeee</span>
-          </a>
+          <li>
+            <a
+              v-on:click="travel"
+              href="https://vast-reaches-37714.herokuapp.com/"
+              class="nav-link"
+              data-toggle="dropdown"
+              aria-expanded="true"
+            >
+              <img
+                src="../../assets/user.svg"
+                class="user-image--small rounded-circle shadow"
+                alt="User Image"
+              />
+              <span class="d-md-inline">Iniciar sesión / registrarse</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  methods: {
+    travel: function () {
+      window.location.href = "https://vast-reaches-37714.herokuapp.com/";
+    },
+  },
+};
+</script>
 
 <style scoped>
 footer {
