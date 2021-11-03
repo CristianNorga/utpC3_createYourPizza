@@ -24,7 +24,9 @@
               <a href="#" class="nav-link p-0 text-muted">Servicios </a>
             </li>
             <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-muted"
+              <a
+                href="https://radiant-ridge-61769.herokuapp.com"
+                class="nav-link p-0 text-muted"
                 >Quejas, reclamos y sugerencias</a
               >
             </li>
